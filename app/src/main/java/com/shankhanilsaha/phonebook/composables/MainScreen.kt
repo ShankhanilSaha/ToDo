@@ -19,11 +19,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.shankhanilsaha.phonebook.database.Tasks
-import com.shankhanilsaha.phonebook.ViewModel.MainViewModel
-import com.shankhanilsaha.phonebook.database.tasksDatabase
+import com.shankhanilsaha.phonebook.viewModel.MainViewModel
 
 @Composable
-fun MainScreen(modifier: Modifier, viewModel: MainViewModel, database : tasksDatabase) {
+fun MainScreen(modifier: Modifier, viewModel: MainViewModel) {
 
     Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "Tasks")
@@ -42,7 +41,7 @@ fun MainScreen(modifier: Modifier, viewModel: MainViewModel, database : tasksDat
     if (viewModel.tasksState.value.isAddingTask) {
         var newTask = remember {mutableStateOf(Tasks(0,"","",""))}
         AlertDialog(
-            onDismissRequest = {viewModel.tasksState.value.isAddingTask = false},
+            onDismissRequest = {viewModel.stopAdding()},
             confirmButton = {
                 Button(onClick = {
                     viewModel.confirmAddTask(newTask.value)
@@ -52,21 +51,23 @@ fun MainScreen(modifier: Modifier, viewModel: MainViewModel, database : tasksDat
             },
             title = { Text(text = "Add Task") },
             text = {
-                OutlinedTextField(
-                    value = newTask.value.taskName,
-                    onValueChange = { input -> newTask.value.taskName = input },
-                    label = { Text(text = "Enter task name") }
-                )
-                OutlinedTextField(
-                    value = newTask.value.dueDate,
-                    onValueChange = { input -> newTask.value.dueDate = input },
-                    label = { Text(text = "Enter due date") }
-                )
-                OutlinedTextField(
-                    value = newTask.value.duration,
-                    onValueChange = { input -> newTask.value.duration = input },
-                    label = { Text(text = "Enter duration") }
-                )
+                Column {
+                    OutlinedTextField(
+                        value = newTask.value.taskName,
+                        onValueChange = { input -> newTask.value = newTask.value.copy(taskName = input) },
+                        label = { Text(text = "Enter task name") }
+                    )
+                    OutlinedTextField(
+                        value = newTask.value.dueDate,
+                        onValueChange = { input -> newTask.value = newTask.value.copy(dueDate = input) },
+                        label = { Text(text = "Enter due date") }
+                    )
+                    OutlinedTextField(
+                        value = newTask.value.duration,
+                        onValueChange = { input -> newTask.value = newTask.value.copy(duration = input) },
+                        label = { Text(text = "Enter duration") }
+                    )
+                }
             }
         )
     }

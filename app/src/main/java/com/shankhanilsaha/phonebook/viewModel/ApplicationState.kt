@@ -1,4 +1,4 @@
-package com.shankhanilsaha.phonebook.ViewModel
+package com.shankhanilsaha.phonebook.viewModel
 
 import com.shankhanilsaha.phonebook.database.Tasks
 

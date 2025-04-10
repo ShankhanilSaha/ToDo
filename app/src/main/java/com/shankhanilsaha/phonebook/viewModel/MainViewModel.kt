@@ -1,4 +1,4 @@
-package com.shankhanilsaha.phonebook.ViewModel
+package com.shankhanilsaha.phonebook.viewModel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -23,20 +23,25 @@ class MainViewModel(val database: tasksDatabase) : ViewModel() {
         )
     }
     fun confirmAddTask(task: Tasks) {
-        viewModelScope.launch {
-            database.tasksDao().addTask(task)
-            getTasks()
-        }
+        database.tasksDao().addTask(task)
         _tasksState.value = _tasksState.value.copy(
             isAddingTask = false
         )
     }
     fun getTasks() {
         viewModelScope.launch {
-            var list : List<Tasks> = database.tasksDao().getTasks()
-            _tasksState.value = _tasksState.value.copy(
-                taskList = list
-            )
+            database.tasksDao().getTasks().collect {
+                list ->
+                _tasksState.value = _tasksState.value.copy(
+                    taskList = list
+                )
+            }
         }
+    }
+
+    fun stopAdding() {
+        _tasksState.value = _tasksState.value.copy(
+            isAddingTask = false
+        )
     }
 }

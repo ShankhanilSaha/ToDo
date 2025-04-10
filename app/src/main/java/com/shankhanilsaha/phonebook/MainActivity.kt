@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.room.Room
-import com.shankhanilsaha.phonebook.ViewModel.MainViewModel
+import com.shankhanilsaha.phonebook.viewModel.MainViewModel
 import com.shankhanilsaha.phonebook.composables.MainScreen
 import com.shankhanilsaha.phonebook.database.tasksDatabase
 import com.shankhanilsaha.phonebook.ui.theme.PhoneBookTheme
@@ -27,11 +27,10 @@ class MainActivity : ComponentActivity() {
                 tasksDatabase::class.java,
                 "tasks.db"
             ).build()
-            val viewModel : MainViewModel = MainViewModel(db)
+            val viewModel = MainViewModel(db)
             PhoneBookTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainScreen(modifier = Modifier.padding(innerPadding),
-                        database = db,
                         viewModel = viewModel)
                 }
             }
