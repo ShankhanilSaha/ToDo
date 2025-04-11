@@ -21,6 +21,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.shankhanilsaha.phonebook.database.Tasks
 import com.shankhanilsaha.phonebook.viewModel.MainViewModel
 
@@ -28,7 +30,9 @@ import com.shankhanilsaha.phonebook.viewModel.MainViewModel
 fun MainScreen(modifier: Modifier, viewModel: MainViewModel) {
 
     Column(modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "Tasks")
+        Text(text = "Tasks",
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold)
         LazyColumn {
             items(viewModel.tasksState.value.taskList) {
                 Task(task = it, onClick = {
@@ -41,7 +45,9 @@ fun MainScreen(modifier: Modifier, viewModel: MainViewModel) {
                 FloatingActionButton(onClick = {
                     viewModel.addTaskList()
                 }, containerColor = Color.Cyan) {
-                    Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+                    Icon(imageVector = Icons.Default.Add,
+                        contentDescription = "Add",
+                        tint = Color.Black)
                 }
             },
             floatingActionButtonPosition = FabPosition.End

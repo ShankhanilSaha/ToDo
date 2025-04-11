@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.shankhanilsaha.phonebook.database.Tasks
 import java.nio.file.WatchEvent
@@ -26,11 +27,11 @@ import java.nio.file.WatchEvent
 fun Task(task: Tasks,onClick : () -> Unit) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .padding(8.dp)
-        .clip(RoundedCornerShape(16.dp))
+        .padding(16.dp)
+        .clip(RoundedCornerShape(1.dp))
         .border(
             width = 1.dp,
-            color = Color.Black
+            color = Color.White
         ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -42,10 +43,10 @@ fun Task(task: Tasks,onClick : () -> Unit) {
                 Text(text = "Due Data")
                 Text(text = "Duration")
             }
-            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                Text(text = task.taskName.toString())
-                Text(text = task.dueDate.toString())
-                Text(text = task.duration.toString())
+            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+                Text(text = task.taskName.toString(), maxLines = 1,overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(0.33f))
+                Text(text = task.dueDate.toString(), maxLines = 1,overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(0.33f))
+                Text(text = task.duration.toString(),  maxLines = 1,overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(0.33f))
             }
         }
         IconButton(onClick = { onClick() }, modifier = Modifier.weight(1f)) {
