@@ -9,9 +9,9 @@ Native Android to-do list app. Uses sqlite as database, RoomDB library is used t
 
 ## Tech Stack
 
-**Technologies:** Kotlin, Jetpack Compose, RoomDB ,MVVM
+**Technologies:** Kotlin, Jetpack Compose, MVVM
 
-**DAtabase:** SQLite
+**Database:** SQLite, RoomDB
 
 
 
