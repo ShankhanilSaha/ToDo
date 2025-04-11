@@ -38,12 +38,12 @@ fun Task(task: Tasks,onClick : () -> Unit) {
     )
     {
         Column(Modifier.weight(3f)) {
-            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Task Name")
-                Text(text = "Due Data")
-                Text(text = "Duration")
+            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth().padding(4.dp)) {
+                Text(text = "Task Name",modifier = Modifier.weight(0.33f))
+                Text(text = "Due Data",modifier = Modifier.weight(0.33f))
+                Text(text = "Duration",modifier = Modifier.weight(0.33f))
             }
-            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth().padding(4.dp)) {
                 Text(text = task.taskName.toString(), maxLines = 1,overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(0.33f))
                 Text(text = task.dueDate.toString(), maxLines = 1,overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(0.33f))
                 Text(text = task.duration.toString(),  maxLines = 1,overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(0.33f))
