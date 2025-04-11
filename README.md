@@ -5,12 +5,7 @@ Native Android to-do list app. Uses sqlite as database, RoomDB library is used t
 
 ## Screenshots
 
-![App Screenshot](https://github.com/ShankhanilSaha/ToDo/blob/main/Screenshots/Screenshot1.jpeg)
-
-![App Screenshot](https://github.com/ShankhanilSaha/ToDo/blob/main/Screenshots/Screenshot2.jpeg)
-
-![App Screenshot](https://github.com/ShankhanilSaha/ToDo/blob/main/Screenshots/Screenshot3.jpeg)
-
+<div style="display: flex; gap: 10px; flex-wrap: wrap;"> <img src="https://github.com/ShankhanilSaha/ToDo/blob/main/Screenshots/Screenshot1.jpeg" alt="Screenshot 1" width="30%"> <img src="https://github.com/ShankhanilSaha/ToDo/blob/main/Screenshots/Screenshot2.jpeg" alt="Screenshot 2" width="30%"> <img src="https://github.com/ShankhanilSaha/ToDo/blob/main/Screenshots/Screenshot3.jpeg" alt="Screenshot 3" width="30%"> </div>
 
 ## Tech Stack
 
