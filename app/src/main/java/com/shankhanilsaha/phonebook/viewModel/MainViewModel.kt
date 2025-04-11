@@ -12,23 +12,25 @@ import kotlinx.coroutines.launch
 class MainViewModel(val database: tasksDatabase) : ViewModel() {
 
     init {
-        getTasks()
+        getTasksList()
     }
 
     private val _tasksState = mutableStateOf(ApplicationState())
     val tasksState : State<ApplicationState> = _tasksState
-    fun addTask() {
+    fun addTaskList() {
         _tasksState.value = _tasksState.value.copy(
             isAddingTask = true
         )
     }
     fun confirmAddTask(task: Tasks) {
-        database.tasksDao().addTask(task)
-        _tasksState.value = _tasksState.value.copy(
-            isAddingTask = false
-        )
+        viewModelScope.launch {
+            database.tasksDao().addTask(task)
+            _tasksState.value = _tasksState.value.copy(
+                isAddingTask = false
+            )
+        }
     }
-    fun getTasks() {
+    fun getTasksList() {
         viewModelScope.launch {
             database.tasksDao().getTasks().collect {
                 list ->
@@ -43,5 +45,11 @@ class MainViewModel(val database: tasksDatabase) : ViewModel() {
         _tasksState.value = _tasksState.value.copy(
             isAddingTask = false
         )
+    }
+
+    fun deleteTask(tasks: Tasks) {
+        viewModelScope.launch {
+            database.tasksDao().deleteTask(tasks)
+        }
     }
 }
